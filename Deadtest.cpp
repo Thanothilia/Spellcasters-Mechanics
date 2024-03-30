@@ -5,7 +5,7 @@ using namespace std;
 bool deadtest(float fire, float earth, float water, float air )
 {
     float dmg, health;
-    health = 2*level;
+    health = 2*Player::lvl;
     switch (enemylist[enemytype])  {
     case 0:
         // Imp (fire type)
