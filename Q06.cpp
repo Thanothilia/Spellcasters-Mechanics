@@ -7,18 +7,12 @@ takes the number summoned, then lists the enemies summoned.*/
 using namespace std;
 int main()
 {
-    int elemcount, addint, enemycount;
-    cout << "How many enemies do you want to create? ";
-    cin >> elemcount;
-    elemcount ++;
-    cout <<"Enter enemies to choose from: \n";
+    int elemcount, addint, enemycount, elemcount;
     string enemies[elemcount];
+    enemycount = 2 + Player::lvl;
     for (int n = 1; n < elemcount; n++){
 		cin >> enemies[n];
 	}
-	cout <<"How many enemies to summon?";
-	cin >> enemycount;
-	enemycount ++;
 	cout <<"Enemies summoned:\n";
 	for (int i = 0; i < enemycount; i++){
         int pick = rand() % elemcount;
