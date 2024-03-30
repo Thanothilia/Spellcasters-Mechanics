@@ -16,5 +16,4 @@ void enemysummon(int& enemies)
     if (enemies[1] > 0){cout << "Fish: " << enemies[1]<<endl;}
     if (enemies[2] > 0){cout << "Golem: " << enemies[2]<<endl;}
     if (enemies[3] > 0){cout << "Whirlwind: " << enemies[3]<<endl;}
-    return 0;
 }
