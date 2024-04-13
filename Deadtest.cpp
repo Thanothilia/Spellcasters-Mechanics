@@ -1,7 +1,3 @@
-#include <iostream>
-#include <bits/stdc++.h>
-using namespace std;
-
 bool deadtest(float fire, float earth, float water, float air )
 {
     float dmg, health;
@@ -31,8 +27,4 @@ bool deadtest(float fire, float earth, float water, float air )
         if (dmg>=health){return true;}
         else{return false;}
         break;
-}
-int main()
-{
-
 }
