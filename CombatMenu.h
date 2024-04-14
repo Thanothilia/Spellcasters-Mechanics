@@ -53,6 +53,18 @@ void castType()
 
     cin >> userNum;
 
+    while(userNum != 1 && userNum != 2 && userNum != 3)
+        {
+            //clear screen
+            cout << "Please enter a valid choice!\n\n";
+
+            cout << "1. Single spell\n";
+            cout << "2. Double spell\n";
+            cout << "3. Triple spell\n\n";
+
+            cin >> userNum;
+        }
+
     switch(userNum)
     {
         case 1:
@@ -109,36 +121,38 @@ void CombatMenu()
     cout<<"1. Fight"<<endl;
     cout<<"2. Flee"<<endl;
     cin >> playerChoice;
+        
 
     while(playerChoice != 1 && playerChoice != 2)
-    {
-        //clear screen
-        cout << "Please enter a valid choice!\n";
-        continue; //check this to make sure this goes back to our VERY first loop
-    }
+        {
+            //clear screen
+            cout << "Please enter a valid choice!\n";
+            continue; //check this to make sure this goes back to our VERY first loop
+        }
+        
 
     switch(playerChoice)
-    {
-        case 1:
-            castType();
+        {
+            case 1:
+                castType();
 
 
-            break;
+                break;
 
-        case 2:
-            srand(time(0));
+            case 2:
+                srand(time(0));
 
-            int escape;
+                int escape;
 
-            escape = rand() % 2;
+                escape = rand() % 2;
 
-            if(escape == 0)
-                {
-                    //insert clear screen!
-                    cout << "You got away safely!";
-                    gotocamp();
-                }
-    }
-    }
+                if(escape == 0)
+                    {
+                        //insert clear screen!
+                        cout << "You got away safely!";
+                        gotocamp();
+                    }
+        }
+        }
     while(/*All enemies are dead*/);
 }
