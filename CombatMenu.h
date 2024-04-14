@@ -41,7 +41,7 @@ void spells(float &fire, float &earth, float &water, float &air, float dmg, int 
     
 }
 
-void castType()
+void castType(float &fire, float &earth, float &water, float &air, float dmg)
 {
     //clear screen
 
@@ -72,19 +72,21 @@ void castType()
 
             cin >> firstSpell;
             
-            spells(FIRE,EARTH,WATER,AIR,uniDmg,firstSpell);
+            spells(fire,earth,water,air,dmg,firstSpell);
             
             break;
         
         case 2:
 
             spellList();
+
             cin >> firstSpell;
-            spells(FIRE,EARTH,WATER,AIR,uniDmg,firstSpell);
+            
+            spells(fire,earth,water,air,dmg,firstSpell);
 
             spellList();
             cin >> secondSpell;
-            spells(FIRE,EARTH,WATER,AIR,uniDmg,secondSpell);
+            spells(fire,earth,water,air,dmg,secondSpell);
             
             break;
 
@@ -92,15 +94,15 @@ void castType()
 
             spellList();
             cin >> firstSpell;
-            spells(FIRE,EARTH,WATER,AIR,uniDmg,firstSpell);
+            spells(fire,earth,water,air,dmg,firstSpell);
 
             spellList();
             cin >> secondSpell;
-            spells(FIRE,EARTH,WATER,AIR,uniDmg,secondSpell);
+            spells(fire,earth,water,air,dmg,secondSpell);
 
             spellList();
             cin >> thirdSpell;
-            spells(FIRE,EARTH,WATER,AIR,uniDmg, thirdSpell);
+            spells(fire,earth,water,air,dmg,thirdSpell);
 
             break;
 
@@ -134,7 +136,7 @@ void CombatMenu()
     switch(playerChoice)
         {
             case 1:
-                castType();
+                castType(FIRE,EARTH,WATER,AIR,uniDmg);
 
 
                 break;
@@ -154,5 +156,5 @@ void CombatMenu()
                     }
         }
         }
-    while(/*All enemies are dead*/);
+    while(/*Check for dead enemies*/);
 }
