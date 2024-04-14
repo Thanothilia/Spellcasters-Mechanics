@@ -13,7 +13,7 @@ void spellList()
     cout << "2. EARTH\n";
     cout << "3. WATER\n";
     cout << "4. AIR\n";
-    cout << "5. Return\n\n"
+    cout << "5. Return\n\n";
 
 }
 
