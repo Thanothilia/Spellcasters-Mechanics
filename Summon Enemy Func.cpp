@@ -1,4 +1,4 @@
-void enemysummon(int& enemies)
+void enemysummon()
 {
     int elemcount, enemycount;
     int enemies [4] = {0, 0, 0, 0};
