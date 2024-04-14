@@ -1,8 +1,8 @@
 #include<iostream>
 #include<cstdlib>
+#include<gotocamp.h>
 using namespace std;
 
-float FIRE=3, EARTH=3, WATER=3, AIR=3;
 
 
 void spellList()
@@ -15,6 +15,30 @@ void spellList()
     cout << "4. AIR\n";
     cout << "5. Return\n\n"
 
+}
+
+void spells(float &fire, float &earth, float &water, float &air, float dmg, int choice)
+{
+    switch(choice)
+        {
+            case 1:
+                fire = dmg;
+                break;
+
+            case 2:
+                earth = dmg;
+                break;
+
+            case 3:
+                water = dmg;
+                break;
+
+            case 4:
+                air = dmg;
+                break;     
+
+        }
+    
 }
 
 void castType()
@@ -35,18 +59,38 @@ void castType()
             spellList();
 
             cin >> firstSpell;
-
+            
+            spells(FIRE,EARTH,WATER,AIR,uniDmg,firstSpell);
+            
             break;
         
         case 2:
 
             spellList();
             cin >> firstSpell;
+            spells(FIRE,EARTH,WATER,AIR,uniDmg,firstSpell);
 
             spellList();
             cin >> secondSpell;
-
+            spells(FIRE,EARTH,WATER,AIR,uniDmg,secondSpell);
             
+            break;
+
+        case 3:
+
+            spellList();
+            cin >> firstSpell;
+            spells(FIRE,EARTH,WATER,AIR,uniDmg,firstSpell);
+
+            spellList();
+            cin >> secondSpell;
+            spells(FIRE,EARTH,WATER,AIR,uniDmg,secondSpell);
+
+            spellList();
+            cin >> thirdSpell;
+            spells(FIRE,EARTH,WATER,AIR,uniDmg, thirdSpell);
+
+            break;
 
     }
 
@@ -59,6 +103,8 @@ void CombatMenu()
     do{
     //clear screen
     //there are blank number of enemies (Something to count how many enemies?)
+    float FIRE=0, EARTH=0, WATER=0, AIR=0;
+    float uniDmg = 3;
 
     cout<<"1. Fight"<<endl;
     cout<<"2. Flee"<<endl;
@@ -90,7 +136,7 @@ void CombatMenu()
                 {
                     //insert clear screen!
                     cout << "You got away safely!";
-                    break;
+                    gotocamp();
                 }
     }
     }
