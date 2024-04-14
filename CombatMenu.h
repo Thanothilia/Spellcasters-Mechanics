@@ -75,7 +75,7 @@ void CombatMenu()
     switch(playerChoice)
     {
         case 1:
-            spellList();
+            castType();
 
 
             break;
