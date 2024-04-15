@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-void deadtest(float &fire, float &earth, float &water, float &air, int &enemies)
+void deadtest(float &fire, float &earth, float &water, float &air, int enemies)
 {
     float dmg, health;
     health = 2;
@@ -60,5 +60,14 @@ void deadtest(float &fire, float &earth, float &water, float &air, int &enemies)
 }
 int main (){
     int enemies[4] = {1, 1, 1, 1};
-    deadtest(3, 3, 3, 3, enemies);
+    for(int i=0; i<4; i++)
+        {
+            deadtest(3, 3, 3, 3, enemies[i]);
+
+            if(deadtest == true)
+            {
+                //delete that element
+            }
+                
+        }
 }
