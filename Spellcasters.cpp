@@ -7,8 +7,7 @@ using namespace std;
 
 namespace Player
 {
-    int health;
-    int lvl;
+    int health=3;
     
 }
 
@@ -17,33 +16,38 @@ void clearScrn()
     cout << "\033[2J\033[1;1H";
 }
 
-int *ptrEnemArr;
+int EnemyArray[4] = {0,0,0,0};
+
+int *ptrEnemArr = EnemyArray;
 
 
 
-int *enemysummon()
+void enemysummon(int* enemies)
 {
-    int elemcount, enemycount;
-    int enemies [4] = {0, 0, 0, 0};
+    int enemycount;
 
-    int *ptrEnem = enemies;
+    enemies[0] = 0;
+    enemies[1] = 0;
+    enemies[2] = 0;
+    enemies[3] = 0;
+    
+    srand(time(0));
 
     //enemy 0 imp, 1 fish, 2 golem, 3 whirlwind
-    enemycount = rand() % 3 + Player::lvl;
-    for (int n = 1; n < elemcount; n++){
-		cin >> enemies[n];
+    
+    for (int n = 0; n < 4; n++){
+		
+        enemies[n] = rand() % 3;
 	}
 	cout <<"Enemies summoned:\n";
-	for (int i = 0; i < enemycount; i++){
-        int pick = rand() % 4;
-        enemies[pick] ++;
-	}
+	
     if (enemies[0] > 0){cout << "Imps: " << enemies[0]<<endl;}
     if (enemies[1] > 0){cout << "Fish: " << enemies[1]<<endl;}
     if (enemies[2] > 0){cout << "Golem: " << enemies[2]<<endl;}
     if (enemies[3] > 0){cout << "Whirlwind: " << enemies[3]<<endl;}
+    cout << endl;
 
-    return ptrEnem;
+    
 }
 
 
@@ -89,7 +93,7 @@ void deadtest(float &fire, float &earth, float &water, float &air, int* enemies)
     health = 2;
     if (enemies[0] > 0){
         // Imp (fire type)
-        dmg = (fire/2 + earth + water * 2 + air);
+        dmg = ((fire/2) + earth + (water * 2) + air);
         if (dmg>=health){
             cout << "Imp has been defeated! \n";
             enemies[0] = 0;
@@ -100,7 +104,7 @@ void deadtest(float &fire, float &earth, float &water, float &air, int* enemies)
     }
     if(enemies[1] > 0){
         // Fish (water type)
-        dmg = (fire*2 + earth + water/2 + air);
+        dmg = ((fire*2) + earth + (water/2) + air);
         if (dmg>=health){
             cout << "Fish has been defeated! \n";
             enemies[1] = 0;
@@ -111,7 +115,7 @@ void deadtest(float &fire, float &earth, float &water, float &air, int* enemies)
     }
     if(enemies[2] > 0){
         // Golem (earth type)
-        dmg = (fire + earth/2 + water + air*2);
+        dmg = (fire + (earth/2) + water + (air*2));
         if (dmg>=health){
             cout << "Golem has been defeated! \n";
             enemies[2] = 0;
@@ -122,7 +126,7 @@ void deadtest(float &fire, float &earth, float &water, float &air, int* enemies)
     }
     if(enemies[3] > 0){
         // Whirlwind (wind type)
-        dmg = (fire + earth*2 + water + air/2);
+        dmg = (fire + (earth*2) + water + (air/2));
         if (dmg>=health){
             cout << "Whirlwind has been defeated! \n";
             enemies[3] = 0;
@@ -200,10 +204,9 @@ void fight(float &fire, float &earth, float &water, float &air, float dmg)
 
             break;
 
-            deadtest(fire,earth,water,air, ptrEnemArr);
-
+            
     }
-
+    deadtest(fire,earth,water,air, ptrEnemArr);
 }
 
 void CombatMenu()
@@ -213,7 +216,7 @@ void CombatMenu()
     
 
     do{
-    clearScrn(); //clear screen
+    
 
     //there are blank number of enemies (Something to count how many enemies?)
 
@@ -229,8 +232,11 @@ void CombatMenu()
     while(playerChoice != 1 && playerChoice != 2)
         {
             //clear screen
-            cout << "Please enter a valid choice!\n";
-            continue; //check this to make sure this goes back to our VERY first loop
+            cout << "Please enter a valid choice!\n\n";
+            cout<<"1. Fight"<<endl;
+            cout<<"2. Flee (btw you can't flee)"<<endl;
+
+            cin >> playerChoice; //check this to make sure this goes back to our VERY first loop
         }
         
 
@@ -240,16 +246,49 @@ void CombatMenu()
                 fight(FIRE,EARTH,WATER,AIR,uniDmg);
 
 
+
                 break;
 
             
 
         }
+    if(!(ptrEnemArr[0]==0)&&(ptrEnemArr[1]==0)&&(ptrEnemArr[2]==0)&&(ptrEnemArr[3]==0))
+    {
+        cout << "The monsters attacked you!\n";
+        Player::health--;
+
+    }
+
+    if(Player::health == 0)
+    {
+        cout << "YOU LOSE >:)\n\ny";
+        break;
+    }
+    else if(Player::health == 2)
+        {
+            cout << "You're not lookin too hot...\n\n";
+        }
+    else if(Player::health == 1)
+    {
+        cout << "You've lost an arm!\n\n";
+    }
+        
+    if (ptrEnemArr[0] > 0){cout << "Imps: " << ptrEnemArr[0]<<endl;}
+    if (ptrEnemArr[1] > 0){cout << "Fish: " << ptrEnemArr[1]<<endl;}
+    if (ptrEnemArr[2] > 0){cout << "Golem: " << ptrEnemArr[2]<<endl;}
+    if (ptrEnemArr[3] > 0){cout << "Whirlwind: " << ptrEnemArr[3]<<endl;}
+    cout << endl;
+
+        if((ptrEnemArr[0]==0)&&(ptrEnemArr[1]==0)&&(ptrEnemArr[2]==0)&&(ptrEnemArr[3]==0))
+        {
+            cout << "All enemies defeated!\n";
+                break;
+        }
 
 
 
         }
-    while(true/*FIX LATER, NEEDS TO  Check for dead enemies*/);
+    while(true);
 }
 
 void gotocamp()
@@ -267,14 +306,10 @@ void gotocamp()
    while (moveop != 'y');
    cout << "\nYou return to the dungeon.\n\n";
    cout << "\nYou move into the next room.\n\n";
-   ptrEnemArr = enemysummon();
+   enemysummon(ptrEnemArr);
    CombatMenu();
         
 }
-
-
-
-
 
 
 
@@ -289,7 +324,7 @@ void liminal()
    while (moveop != 'n' && moveop != 'y');
    if (moveop == 'y'){
         cout << "\nYou move into the next room.\n\n";
-        ptrEnemArr = enemysummon();
+        enemysummon(ptrEnemArr);
         CombatMenu();
    }
    else{
