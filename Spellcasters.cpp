@@ -307,37 +307,3 @@ int main()
 
   return 0;
 }
-
-
-
-                break;
-
-            case 2:
-                srand(time(0));
-
-                int escape;
-
-                escape = rand() % 2;
-
-                if(escape == 0)
-                    {
-                        //insert clear screen!
-                        cout << "You got away safely!";
-                        gotocamp();
-                    }
-        }
-        }
-    while(true/*FIX LATER, NEEDS TO  Check for dead enemies*/);
-}
-
-
-
-
-
-
-
-
-int main()
-{
-  
-}
