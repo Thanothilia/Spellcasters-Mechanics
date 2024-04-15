@@ -5,13 +5,10 @@ using namespace std;
 
 
 
-void deadtest(float fire, float earth, float water, float air, int* enemies)
-{
+void deadtest(float fire, float earth, float water, float air, int* enemies){
     float dmg, health;
     health = 2;
-    for(int i = 0; i < 4; i++ ){
-        switch (enemies[i])  {
-    case 0:
+    if (enemies[0] > 0){
         // Imp (fire type)
         dmg = (fire/2 + earth + water * 2 + air);
         if (dmg>=health){
@@ -21,8 +18,8 @@ void deadtest(float fire, float earth, float water, float air, int* enemies)
         else{
             cout << "Imp is still alive...\n";
             }
-        break;
-    case 1:
+    }
+    if(enemies[1] > 0){
         // Fish (water type)
         dmg = (fire*2 + earth + water/2 + air);
         if (dmg>=health){
@@ -32,8 +29,8 @@ void deadtest(float fire, float earth, float water, float air, int* enemies)
         else{
             cout << "Fish is still alive...\n";
         }
-        break;
-    case 2:
+    }
+    if(enemies[2] > 0){
         // Golem (earth type)
         dmg = (fire + earth/2 + water + air*2);
         if (dmg>=health){
@@ -43,8 +40,8 @@ void deadtest(float fire, float earth, float water, float air, int* enemies)
         else{
             cout << "Golem is still alive...\n";
             }
-        break;
-    case 3:
+    }
+    if(enemies[3] > 0){
         // Whirlwind (wind type)
         dmg = (fire + earth*2 + water + air/2);
         if (dmg>=health){
@@ -54,18 +51,17 @@ void deadtest(float fire, float earth, float water, float air, int* enemies)
         else{
             cout << "Whirlwind is still alive...\n";
             }
-        break;
         }
 }
-}
+
 int main (){
     int enemies[4] = {1, 1, 1, 1};
     int *ptrEnem = enemies;
-            
+
     deadtest(3, 3, 3, 3, ptrEnem);
 
-        
-                
-        
+
+
+
 }
 
