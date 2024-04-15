@@ -245,7 +245,7 @@ void CombatMenu()
     cin >> playerChoice;
         
 
-    while(playerChoice != 1 && playerChoice != 2)
+    }while(playerChoice != 1 && playerChoice != 2)
         {
             //clear screen
             cout << "Please enter a valid choice!\n";
