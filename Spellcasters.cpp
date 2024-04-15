@@ -275,7 +275,7 @@ void CombatMenu()
                         cout << "You got away safely!";
                         gotocamp();
                     }
-        }
+        }}}
 
 
 
