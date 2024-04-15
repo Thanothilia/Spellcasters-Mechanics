@@ -261,7 +261,6 @@ void CombatMenu()
 
 
         }
-    while(true/*FIX LATER, NEEDS TO  Check for dead enemies*/);
 }
 
 
