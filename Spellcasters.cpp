@@ -11,26 +11,22 @@ namespace Player
     
 }
 
-void gotocamp()
+void clearScrn()
 {
-   char moveop;
-   cout << "\n\nWelcome back to camp!\n\n";
-   /*Player.health = maxhealth*/
-   cout << "You have been fully healed\n";
-   /*if we do integrate save system
-   cout << "Saving...\n...\n...\n";*/
-   cout << "Do you want to return to the dungeon (y)?\n";
-    do{
-        cin >> moveop;
-   }
-   while (moveop != 'y');
-   liminal();
+    cout << "\033[2J\033[1;1H";
 }
 
-void enemysummon()
+int *ptrEnemArr;
+
+
+
+int *enemysummon()
 {
     int elemcount, enemycount;
     int enemies [4] = {0, 0, 0, 0};
+
+    int *ptrEnem = enemies;
+
     //enemy 0 imp, 1 fish, 2 golem, 3 whirlwind
     enemycount = rand() % 3 + Player::lvl;
     for (int n = 1; n < elemcount; n++){
@@ -45,31 +41,47 @@ void enemysummon()
     if (enemies[1] > 0){cout << "Fish: " << enemies[1]<<endl;}
     if (enemies[2] > 0){cout << "Golem: " << enemies[2]<<endl;}
     if (enemies[3] > 0){cout << "Whirlwind: " << enemies[3]<<endl;}
+
+    return ptrEnem;
 }
 
 
 
-void liminal()
+void spellList()
 {
-   char moveop;
-   cout << "\n\nmoving...\n\n";
-   cout << "Would you like to move on to another room (y) or return to camp? (n)\n";
-   do{
-        cin >> moveop;
-   }
-   while (moveop != 'n' && moveop != 'y');
-   if (moveop == 'y'){
-        cout << "\nYou move into the next room.\n\n";
-        enemysummon();
-   }
-   else{
-        cout <<"\nYou return to camp.\n\n";
-        gotocamp();
-   }
+    //clear screen
+
+    cout << "1. FIRE\n";
+    cout << "2. EARTH\n";
+    cout << "3. WATER\n";
+    cout << "4. AIR\n";
+    cout << "5. Return\n\n";
+
 }
 
+void spells(float &fire, float &earth, float &water, float &air, float dmg, int choice)
+{
+    switch(choice)
+        {
+            case 1:
+                fire = dmg;
+                break;
 
+            case 2:
+                earth = dmg;
+                break;
 
+            case 3:
+                water = dmg;
+                break;
+
+            case 4:
+                air = dmg;
+                break;     
+
+        }
+    
+}
 
 void deadtest(float &fire, float &earth, float &water, float &air, int* enemies){
     float dmg, health;
@@ -122,43 +134,7 @@ void deadtest(float &fire, float &earth, float &water, float &air, int* enemies)
 }
 
 
-void spellList()
-{
-    //clear screen
-
-    cout << "1. FIRE\n";
-    cout << "2. EARTH\n";
-    cout << "3. WATER\n";
-    cout << "4. AIR\n";
-    cout << "5. Return\n\n";
-
-}
-
-void spells(float &fire, float &earth, float &water, float &air, float dmg, int choice)
-{
-    switch(choice)
-        {
-            case 1:
-                fire = dmg;
-                break;
-
-            case 2:
-                earth = dmg;
-                break;
-
-            case 3:
-                water = dmg;
-                break;
-
-            case 4:
-                air = dmg;
-                break;     
-
-        }
-    
-}
-
-void castType(float &fire, float &earth, float &water, float &air, float dmg)
+void fight(float &fire, float &earth, float &water, float &air, float dmg)
 {
     //clear screen
 
@@ -223,17 +199,26 @@ void castType(float &fire, float &earth, float &water, float &air, float dmg)
 
             break;
 
+            deadtest(fire,earth,water,air, ptrEnemArr);
+
     }
 
 }
+
+
 
 void CombatMenu()
 {
     int playerChoice;
 
+    
+
     do{
-    //clear screen
+    clearScrn(); //clear screen
+
     //there are blank number of enemies (Something to count how many enemies?)
+
+
     float FIRE=0, EARTH=0, WATER=0, AIR=0;
     float uniDmg = 3;
 
@@ -253,7 +238,78 @@ void CombatMenu()
     switch(playerChoice)
         {
             case 1:
-                castType(FIRE,EARTH,WATER,AIR,uniDmg);
+                fight(FIRE,EARTH,WATER,AIR,uniDmg);
+
+
+                break;
+
+            case 2:
+                srand(time(0));
+
+                int escape;
+
+                escape = rand() % 2;
+
+                if(escape == 0)
+                    {
+                        //insert clear screen!
+                        cout << "You got away safely!";
+                        gotocamp();
+                    }
+        }
+
+
+
+        }
+    while(true/*FIX LATER, NEEDS TO  Check for dead enemies*/);
+}
+
+
+
+void liminal()
+{
+   char moveop;
+   cout << "\n\nmoving...\n\n";
+   cout << "Would you like to move on to another room (y) or return to camp? (n)\n";
+   do{
+        cin >> moveop;
+   }
+   while (moveop != 'n' && moveop != 'y');
+   if (moveop == 'y'){
+        cout << "\nYou move into the next room.\n\n";
+        ptrEnemArr = enemysummon();
+        CombatMenu();
+   }
+   else{
+        cout <<"\nYou return to camp.\n\n";
+        gotocamp();
+   }
+}
+
+void gotocamp()
+{
+   char moveop;
+   cout << "\n\nWelcome back to camp!\n\n";
+   /*Player.health = maxhealth*/
+   cout << "You have been fully healed\n";
+   /*if we do integrate save system
+   cout << "Saving...\n...\n...\n";*/
+   cout << "Do you want to return to the dungeon (y)?\n";
+    do{
+        cin >> moveop;
+   }
+   while (moveop != 'y');
+   liminal();
+}
+
+
+int main()
+{
+  
+
+  return 0;
+}
+
 
 
                 break;
