@@ -299,7 +299,10 @@ void gotocamp()
         cin >> moveop;
    }
    while (moveop != 'y');
-   liminal();
+   cout << "\nYou return to the dungeon.\n\n";
+   cout << "\nYou move into the next room.\n\n";
+	ptrEnemArr = enemysummon();
+        CombatMenu();
 }
 
 
