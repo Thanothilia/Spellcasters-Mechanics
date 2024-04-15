@@ -62,11 +62,14 @@ int main (){
     int enemies[4] = {1, 1, 1, 1};
     for(int i=0; i<4; i++)
         {
+            if(enemies[i] == 0)
+                continue;
+            
             deadtest(3, 3, 3, 3, enemies[i]);
 
             if(deadtest == true)
             {
-                //delete that element
+                enemies[i] = 0;
             }
                 
         }
