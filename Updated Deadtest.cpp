@@ -5,12 +5,12 @@ using namespace std;
 
 
 
-void deadtest(float &fire, float &earth, float &water, float &air, int enemies)
+void deadtest(float fire, float earth, float water, float air, int* enemies)
 {
     float dmg, health;
     health = 2;
     for(int i = 0; i < 4; i++ ){
-        switch (enemies)  {
+        switch (enemies[i])  {
     case 0:
         // Imp (fire type)
         dmg = (fire/2 + earth + water * 2 + air);
@@ -60,17 +60,12 @@ void deadtest(float &fire, float &earth, float &water, float &air, int enemies)
 }
 int main (){
     int enemies[4] = {1, 1, 1, 1};
-    for(int i=0; i<4; i++)
-        {
-            if(enemies[i] == 0)
-                continue;
+    int *ptrEnem = enemies;
             
-            deadtest(3, 3, 3, 3, enemies[i]);
+    deadtest(3, 3, 3, 3, ptrEnem);
 
-            if(deadtest == true)
-            {
-                enemies[i] = 0;
-            }
+        
                 
-        }
+        
 }
+
