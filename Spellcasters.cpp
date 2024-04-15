@@ -206,7 +206,24 @@ void fight(float &fire, float &earth, float &water, float &air, float dmg)
 
 }
 
-
+void gotocamp()
+{
+   char moveop;
+   cout << "\n\nWelcome back to camp!\n\n";
+   /*Player.health = maxhealth*/
+   cout << "You have been fully healed\n";
+   /*if we do integrate save system
+   cout << "Saving...\n...\n...\n";*/
+   cout << "Do you want to return to the dungeon (y)?\n";
+    do{
+        cin >> moveop;
+   }
+   while (moveop != 'y');
+   cout << "\nYou return to the dungeon.\n\n";
+   cout << "\nYou move into the next room.\n\n";
+	ptrEnemArr = enemysummon();
+        CombatMenu();
+}
 
 void CombatMenu()
 {
@@ -236,6 +253,7 @@ void CombatMenu()
         }
         
 
+	    
     switch(playerChoice)
         {
             case 1:
@@ -260,28 +278,6 @@ void CombatMenu()
         }
 
 
-
-        }
-}
-
-void gotocamp()
-{
-   char moveop;
-   cout << "\n\nWelcome back to camp!\n\n";
-   /*Player.health = maxhealth*/
-   cout << "You have been fully healed\n";
-   /*if we do integrate save system
-   cout << "Saving...\n...\n...\n";*/
-   cout << "Do you want to return to the dungeon (y)?\n";
-    do{
-        cin >> moveop;
-   }
-   while (moveop != 'y');
-   cout << "\nYou return to the dungeon.\n\n";
-   cout << "\nYou move into the next room.\n\n";
-	ptrEnemArr = enemysummon();
-        CombatMenu();
-}
 
 
 
