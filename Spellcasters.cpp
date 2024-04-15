@@ -206,25 +206,6 @@ void fight(float &fire, float &earth, float &water, float &air, float dmg)
 
 }
 
-void gotocamp()
-{
-   char moveop;
-   cout << "\n\nWelcome back to camp!\n\n";
-   /*Player.health = maxhealth*/
-   cout << "You have been fully healed\n";
-   /*if we do integrate save system
-   cout << "Saving...\n...\n...\n";*/
-   cout << "Do you want to return to the dungeon (y)?\n";
-    do{
-        cin >> moveop;
-   }
-   while (moveop != 'y');
-   cout << "\nYou return to the dungeon.\n\n";
-   cout << "\nYou move into the next room.\n\n";
-	ptrEnemArr = enemysummon();
-        CombatMenu();
-}
-
 void CombatMenu()
 {
     int playerChoice;
@@ -241,11 +222,11 @@ void CombatMenu()
     float uniDmg = 3;
 
     cout<<"1. Fight"<<endl;
-    cout<<"2. Flee"<<endl;
+    cout<<"2. Flee (btw you can't flee)"<<endl;
     cin >> playerChoice;
         
 
-    }while(playerChoice != 1 && playerChoice != 2);
+    while(playerChoice != 1 && playerChoice != 2)
         {
             //clear screen
             cout << "Please enter a valid choice!\n";
@@ -253,7 +234,6 @@ void CombatMenu()
         }
         
 
-	    
     switch(playerChoice)
         {
             case 1:
@@ -262,20 +242,37 @@ void CombatMenu()
 
                 break;
 
-            case 2:
-                srand(time(0));
+            
 
-                int escape;
+        }
 
-                escape = rand() % 2;
 
-                if(escape == 0)
-                    {
-                        //insert clear screen!
-                        cout << "You got away safely!";
-                        gotocamp();
-                    }
-        }}
+
+        }
+    while(true/*FIX LATER, NEEDS TO  Check for dead enemies*/);
+}
+
+void gotocamp()
+{
+   char moveop;
+   cout << "\n\nWelcome back to camp!\n\n";
+   /*Player.health = maxhealth*/
+   cout << "You have been fully healed\n";
+   /*if we do integrate save system
+   cout << "Saving...\n...\n...\n";*/
+   cout << "Do you want to return to the dungeon (y)?\n";
+    do{
+        cin >> moveop;
+   }
+   while (moveop != 'y');
+   cout << "\nYou return to the dungeon.\n\n";
+   cout << "\nYou move into the next room.\n\n";
+   ptrEnemArr = enemysummon();
+   CombatMenu();
+        
+}
+
+
 
 
 
@@ -304,6 +301,7 @@ void liminal()
 int main()
 {
   
+  liminal();
 
   return 0;
 }
