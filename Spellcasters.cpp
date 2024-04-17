@@ -252,7 +252,7 @@ void CombatMenu()
             
 
         }
-    if(!(ptrEnemArr[0]==0)&&(ptrEnemArr[1]==0)&&(ptrEnemArr[2]==0)&&(ptrEnemArr[3]==0))
+    if(!((ptrEnemArr[0]==0)&&(ptrEnemArr[1]==0)&&(ptrEnemArr[2]==0)&&(ptrEnemArr[3]==0)))
     {
         cout << "The monsters attacked you!\n";
         Player::health--;
